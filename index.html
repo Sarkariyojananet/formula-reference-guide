@@ -6,7 +6,7 @@
     <title>Open-Source Finance, Math &amp; Civil Engineering Formula Reference</title>
     <meta
       name="description"
-      content="Clean open-source formula cheat sheet for SIP returns, Loan EMI, BMI, Percentage, Roman Numerals, Concrete Mix, and RCC Beam Steel calculations."
+      content="Comprehensive open-source reference guide with derivations, step-by-step numerical examples, and code snippets for SIP, Loan EMI, Concrete Mix, RCC Steel, Percentage, and BMI."
     />
     <meta name="robots" content="index, follow" />
     <style>
@@ -40,7 +40,7 @@
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         background: var(--bg);
         color: var(--text);
-        line-height: 1.65;
+        line-height: 1.7;
       }
       .container {
         max-width: 920px;
@@ -73,24 +73,55 @@
         margin: 0;
         font-size: 1.05rem;
       }
+      nav.toc {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+      nav.toc strong {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 0.9rem;
+      }
+      nav.toc ul {
+        margin: 0;
+        padding-left: 1.2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.25rem 1rem;
+        font-size: 0.92rem;
+      }
+      nav.toc a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      nav.toc a:hover {
+        text-decoration: underline;
+      }
       .grid {
         display: grid;
-        gap: 1.25rem;
+        gap: 1.5rem;
       }
       section.card {
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 14px;
-        padding: 1.5rem;
+        padding: 1.65rem;
       }
       h2 {
         margin-top: 0;
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.75rem;
         flex-wrap: wrap;
+      }
+      h3 {
+        font-size: 1rem;
+        margin: 1.15rem 0 0.4rem;
       }
       .formula {
         background: var(--code-bg);
@@ -98,9 +129,18 @@
         border-radius: 8px;
         padding: 0.85rem 1rem;
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         overflow-x: auto;
         margin: 0.75rem 0;
+      }
+      pre {
+        background: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.9rem 1rem;
+        overflow-x: auto;
+        font-size: 0.85rem;
+        line-height: 1.5;
       }
       ul.vars {
         margin: 0.5rem 0 1rem;
@@ -113,9 +153,9 @@
         color: var(--accent);
         text-decoration: none;
         font-weight: 600;
-        font-size: 0.92rem;
+        font-size: 0.88rem;
         border: 1px solid var(--border);
-        padding: 0.4rem 0.8rem;
+        padding: 0.35rem 0.75rem;
         border-radius: 8px;
         background: var(--accent-soft);
       }
@@ -138,6 +178,14 @@
         color: var(--muted);
         font-weight: 600;
       }
+      .note {
+        border-left: 3px solid var(--accent);
+        padding: 0.5rem 0.9rem;
+        background: var(--accent-soft);
+        border-radius: 0 8px 8px 0;
+        font-size: 0.92rem;
+        margin-top: 0.75rem;
+      }
       footer {
         margin-top: 2.5rem;
         padding-top: 1.25rem;
@@ -154,108 +202,183 @@
   <body>
     <main class="container">
       <header>
-        <span class="badge">Open-Source Formula Cheat Sheet</span>
+        <span class="badge">Open-Source Engineering &amp; Math Handbook</span>
         <h1>Finance, Math &amp; Civil Engineering Formula Reference</h1>
         <p class="lead">
-          A quick, verified reference of mathematical, financial, health, and construction estimation formulas with interactive web tools powered by
-          <a href="https://aifreecalculator.com/" target="_blank" rel="noopener">AI Free Calculator</a>.
+          A practical open-source handbook explaining standard mathematical formulas, step-by-step worked numerical examples, implementation edge cases, and JavaScript/Python snippets for students, civil engineers, and developers.
         </p>
       </header>
 
+      <nav class="toc" aria-label="Table of Contents">
+        <strong>Table of Contents</strong>
+        <ul>
+          <li><a href="#sip">1. Systematic Investment Plan (SIP)</a></li>
+          <li><a href="#emi">2. Loan EMI &amp; Amortization</a></li>
+          <li><a href="#concrete">3. Concrete Volume &amp; Dry Mix Ratio</a></li>
+          <li><a href="#steel">4. Reinforcement Steel Weight (IS 1786)</a></li>
+          <li><a href="#percentage">5. Percentage &amp; Relative Change</a></li>
+          <li><a href="#bmi">6. Body Mass Index (BMI)</a></li>
+        </ul>
+      </nav>
+
       <div class="grid">
-        <section class="card">
+        <section class="card" id="sip">
           <h2>
             <span>1. Systematic Investment Plan (SIP) Future Value</span>
-            <a class="btn" href="https://aifreecalculator.com/finance/sip-calculator/" target="_blank" rel="noopener">Open Interactive SIP Calculator &rarr;</a>
+            <a class="btn" href="https://aifreecalculator.com/finance/sip-calculator/" target="_blank" rel="noopener">Try Interactive SIP Calculator &rarr;</a>
           </h2>
+          <p>
+            A Systematic Investment Plan compounds each monthly installment at the beginning of the period (annuity due). Unlike a single lump-sum deposit, every monthly contribution compounds for one fewer month than the previous contribution.
+          </p>
           <div class="formula">FV = P &times; [((1 + r)^n - 1) / r] &times; (1 + r)</div>
           <ul class="vars">
-            <li><strong>P:</strong> Monthly investment amount</li>
-            <li><strong>r:</strong> Periodic monthly rate of return (Annual Rate / 12 / 100)</li>
-            <li><strong>n:</strong> Total number of monthly installments (Years &times; 12)</li>
+            <li><strong>P:</strong> Fixed monthly contribution</li>
+            <li><strong>r:</strong> Monthly compounding rate = (Annual Expected Return % / 12) / 100</li>
+            <li><strong>n:</strong> Total number of monthly installments = Years &times; 12</li>
           </ul>
-          <p><strong>Example:</strong> Investing 5,000/month for 10 years (n = 120) at 12% p.a. (r = 0.01) yields ~11,61,695.</p>
+          <h3>Worked Step-by-Step Example</h3>
+          <p>
+            Suppose you invest <strong>5,000 per month</strong> for <strong>10 years</strong> (<code>n = 120</code>) at an expected annual return of <strong>12%</strong> (<code>r = 0.01</code>):
+          </p>
+          <div class="formula">
+            (1 + 0.01)^120 = 3.300387<br />
+            FV = 5000 &times; [(3.300387 - 1) / 0.01] &times; 1.01 = 11,61,695
+          </div>
+          <div class="note">
+            <strong>Common Mistake:</strong> Dividing annual rate by 12 works for standard mutual fund illustrations, whereas effective annual yield conversions use <code>(1 + R)^(1/12) - 1</code>. Always check which convention a financial institution uses.
+          </div>
         </section>
 
-        <section class="card">
+        <section class="card" id="emi">
           <h2>
             <span>2. Loan Equated Monthly Installment (EMI)</span>
-            <a class="btn" href="https://aifreecalculator.com/finance/emi-calculator/" target="_blank" rel="noopener">Open Interactive EMI Calculator &rarr;</a>
+            <a class="btn" href="https://aifreecalculator.com/finance/emi-calculator/" target="_blank" rel="noopener">Try Interactive EMI Calculator &rarr;</a>
           </h2>
+          <p>
+            Reducing-balance loans (home, auto, and personal loans) charge interest only on the remaining unpaid principal each month. Early installments pay mostly interest; later installments pay mostly principal.
+          </p>
           <div class="formula">EMI = [P &times; R &times; (1 + R)^N] / [(1 + R)^N - 1]</div>
           <ul class="vars">
-            <li><strong>P:</strong> Principal loan amount</li>
+            <li><strong>P:</strong> Loan principal amount</li>
             <li><strong>R:</strong> Monthly interest rate (Annual Rate / 12 / 100)</li>
-            <li><strong>N:</strong> Loan tenure in months</li>
+            <li><strong>N:</strong> Total tenure in months</li>
           </ul>
+          <h3>JavaScript Implementation</h3>
+          <pre><code>function calculateEMI(principal, annualRatePct, months) {
+  if (annualRatePct === 0) return principal / months;
+  const r = annualRatePct / 12 / 100;
+  const factor = Math.pow(1 + r, months);
+  return (principal * r * factor) / (factor - 1);
+}</code></pre>
+          <p>
+            Notice the zero-interest guard (<code>annualRatePct === 0</code>) to avoid division by zero in floating-point arithmetic.
+          </p>
         </section>
 
-        <section class="card">
+        <section class="card" id="concrete">
           <h2>
-            <span>3. Concrete Volume &amp; Dry Mix Material Estimation</span>
-            <a class="btn" href="https://aifreecalculator.com/construction/concrete-calculator/" target="_blank" rel="noopener">Open Concrete Calculator &rarr;</a>
+            <span>3. Concrete Volume &amp; Dry Mix Estimation</span>
+            <a class="btn" href="https://aifreecalculator.com/construction/concrete-calculator/" target="_blank" rel="noopener">Try Concrete Calculator &rarr;</a>
           </h2>
+          <p>
+            When dry cement, fine aggregate (sand), and coarse aggregate are mixed with water, finer particles fill the voids between coarse stones. Therefore, <strong>1 m&sup3; of wet compacted concrete requires approximately 1.54 m&sup3; of dry loose materials</strong> (a 54% bulking/void allowance).
+          </p>
           <div class="formula">Dry Volume = Wet Volume &times; 1.54</div>
-          <p>To account for voids in sand and aggregate, wet concrete volume is multiplied by 1.54 before applying nominal mix ratios:</p>
+          <h3>Worked Example (1 m&sup3; of M20 Concrete, Ratio 1 : 1.5 : 3)</h3>
+          <ul class="vars">
+            <li><strong>Sum of ratio parts:</strong> 1 + 1.5 + 3 = 5.5</li>
+            <li><strong>Cement volume:</strong> (1 / 5.5) &times; 1.54 = 0.28 m&sup3; (&divide; 0.035 m&sup3;/bag &approx; <strong>8 bags</strong> of 50 kg)</li>
+            <li><strong>Sand volume:</strong> (1.5 / 5.5) &times; 1.54 = <strong>0.42 m&sup3;</strong></li>
+            <li><strong>Aggregate volume:</strong> (3 / 5.5) &times; 1.54 = <strong>0.84 m&sup3;</strong></li>
+          </ul>
           <table>
             <thead>
               <tr>
                 <th>Grade</th>
-                <th>Mix Ratio (Cement : Sand : Aggregate)</th>
-                <th>Typical Application</th>
+                <th>Nominal Mix Ratio</th>
+                <th>Compressive Strength (28 Days)</th>
+                <th>Common Structural Use</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>M15</td><td>1 : 2 : 4</td><td>Plain Cement Concrete (PCC)</td></tr>
-              <tr><td>M20</td><td>1 : 1.5 : 3</td><td>Residential Slabs, Beams &amp; Footings</td></tr>
-              <tr><td>M25</td><td>1 : 1 : 2</td><td>Heavy Structural Columns &amp; Beams</td></tr>
+              <tr><td>M15</td><td>1 : 2 : 4</td><td>15 N/mm&sup2;</td><td>PCC leveling courses &amp; pathways</td></tr>
+              <tr><td>M20</td><td>1 : 1.5 : 3</td><td>20 N/mm&sup2;</td><td>Residential slabs, beams &amp; footings</td></tr>
+              <tr><td>M25</td><td>1 : 1 : 2</td><td>25 N/mm&sup2;</td><td>Columns &amp; heavier RCC frames</td></tr>
             </tbody>
           </table>
         </section>
 
-        <section class="card">
+        <section class="card" id="steel">
           <h2>
             <span>4. Reinforcement Steel Unit Weight (IS 1786)</span>
-            <a class="btn" href="https://aifreecalculator.com/construction/rcc-beam-steel-calculator/" target="_blank" rel="noopener">Open RCC Beam Steel Calculator &rarr;</a>
+            <a class="btn" href="https://aifreecalculator.com/construction/rcc-beam-steel-calculator/" target="_blank" rel="noopener">Try RCC Beam Steel Calculator &rarr;</a>
           </h2>
-          <div class="formula">Unit Weight (kg/m) = D&sup2; / 162.2</div>
-          <ul class="vars">
-            <li><strong>D:</strong> Diameter of steel rebar in millimeters (mm)</li>
-            <li><strong>Example:</strong> For a 12 mm bar: (12 &times; 12) / 162.2 = 0.888 kg/m</li>
-          </ul>
+          <p>
+            The unit weight of circular steel rebar is derived from the volume of a 1-meter cylinder multiplied by the standard density of mild/TMT steel (<strong>7,850 kg/m&sup3;</strong>):
+          </p>
+          <div class="formula">
+            Weight/m = (&pi; / 4) &times; (D / 1000)&sup2; &times; 1 &times; 7850 = D&sup2; / 162.2
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Bar Diameter (mm)</th>
+                <th>Unit Weight (kg/m)</th>
+                <th>Standard 12m Bar Weight (kg)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>8 mm</td><td>0.395 kg/m</td><td>4.74 kg</td></tr>
+              <tr><td>10 mm</td><td>0.617 kg/m</td><td>7.40 kg</td></tr>
+              <tr><td>12 mm</td><td>0.888 kg/m</td><td>10.65 kg</td></tr>
+              <tr><td>16 mm</td><td>1.578 kg/m</td><td>18.94 kg</td></tr>
+              <tr><td>20 mm</td><td>2.466 kg/m</td><td>29.59 kg</td></tr>
+            </tbody>
+          </table>
         </section>
 
-        <section class="card">
+        <section class="card" id="percentage">
           <h2>
-            <span>5. Percentage &amp; Percentage Change</span>
-            <a class="btn" href="https://aifreecalculator.com/math/percentage-calculator/" target="_blank" rel="noopener">Open Percentage Calculator &rarr;</a>
+            <span>5. Percentage &amp; Relative Percentage Change</span>
+            <a class="btn" href="https://aifreecalculator.com/math/percentage-calculator/" target="_blank" rel="noopener">Try Percentage Calculator &rarr;</a>
           </h2>
+          <p>
+            Percentage normalizes a ratio to a base of 100, while percentage change measures directional growth or decline relative to an initial baseline value.
+          </p>
           <div class="formula">Percentage (%) = (Part / Whole) &times; 100</div>
-          <div class="formula">Percentage Change = ((New Value - Old Value) / Old Value) &times; 100</div>
+          <div class="formula">Percentage Change = ((New Value - Old Value) / |Old Value|) &times; 100</div>
+          <p>
+            Note the distinction between <em>percentage change</em> and <em>percentage difference</em>: percentage difference divides by the average of the two numbers <code>(|A - B| / ((A + B) / 2)) &times; 100</code> because neither value is designated as the baseline.
+          </p>
         </section>
 
-        <section class="card">
+        <section class="card" id="bmi">
           <h2>
             <span>6. Body Mass Index (BMI)</span>
-            <a class="btn" href="https://aifreecalculator.com/health/bmi-calculator/" target="_blank" rel="noopener">Open BMI Calculator &rarr;</a>
+            <a class="btn" href="https://aifreecalculator.com/health/bmi-calculator/" target="_blank" rel="noopener">Try BMI Calculator &rarr;</a>
           </h2>
+          <p>
+            Body Mass Index is a simple population-level screening metric proposed by Adolphe Quetelet. Because mass scales roughly with height squared in adult proportions, BMI uses <code>height&sup2;</code> in meters.
+          </p>
           <div class="formula">BMI = Weight (kg) / [Height (m)]&sup2;</div>
           <ul class="vars">
-            <li><strong>Underweight:</strong> &lt; 18.5</li>
-            <li><strong>Normal:</strong> 18.5 &ndash; 24.9</li>
-            <li><strong>Overweight:</strong> 25.0 &ndash; 29.9</li>
+            <li><strong>Underweight:</strong> &lt; 18.5 kg/m&sup2;</li>
+            <li><strong>Normal range:</strong> 18.5 &ndash; 24.9 kg/m&sup2;</li>
+            <li><strong>Overweight:</strong> 25.0 &ndash; 29.9 kg/m&sup2;</li>
+            <li><strong>Obese:</strong> &ge; 30.0 kg/m&sup2;</li>
           </ul>
+          <div class="note">
+            <strong>Limitation:</strong> BMI does not distinguish lean muscle mass from body fat, so athletes and older adults should interpret it alongside waist-to-height ratio.
+          </div>
         </section>
       </div>
 
       <footer>
         <p>
-          Full interactive suite of 130+ free browser-based calculators available at
-          <a href="https://aifreecalculator.com/" target="_blank" rel="noopener">https://aifreecalculator.com/</a>
-          &bull;
-          <a href="https://aifreecalculator.com/math/roman-numeral-converter/" target="_blank" rel="noopener">Roman Numeral Converter</a>
-          &bull;
-          <a href="https://aifreecalculator.com/all-calculators/" target="_blank" rel="noopener">All Calculators</a>
+          Maintained as an open educational reference. Interactive browser-based implementations are available at
+          <a href="https://aifreecalculator.com/" target="_blank" rel="noopener">AI Free Calculator</a>
+          (<a href="https://aifreecalculator.com/all-calculators/" target="_blank" rel="noopener">Full Directory</a> &bull;
+          <a href="https://aifreecalculator.com/math/roman-numeral-converter/" target="_blank" rel="noopener">Roman Numeral Converter</a>).
         </p>
       </footer>
     </main>
