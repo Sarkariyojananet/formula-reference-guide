@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open-Source Finance, Math &amp; Civil Engineering Formula Reference</title>
+    <meta
+      name="description"
+      content="Clean open-source formula cheat sheet for SIP returns, Loan EMI, BMI, Percentage, Roman Numerals, Concrete Mix, and RCC Beam Steel calculations."
+    />
+    <meta name="robots" content="index, follow" />
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --accent: #2563eb;
+        --accent-soft: #eff6ff;
+        --code-bg: #f1f5f9;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f172a;
+          --card: #1e293b;
+          --text: #f8fafc;
+          --muted: #94a3b8;
+          --border: #334155;
+          --accent: #60a5fa;
+          --accent-soft: #1e3a8a33;
+          --code-bg: #0f172a;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+      .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 4rem;
+      }
+      header {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+      }
+      h1 {
+        margin: 0.75rem 0 0.5rem;
+        font-size: clamp(1.65rem, 3vw, 2.25rem);
+        line-height: 1.2;
+      }
+      .lead {
+        color: var(--muted);
+        margin: 0;
+        font-size: 1.05rem;
+      }
+      .grid {
+        display: grid;
+        gap: 1.25rem;
+      }
+      section.card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem;
+      }
+      h2 {
+        margin-top: 0;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .formula {
+        background: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.92rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+      }
+      ul.vars {
+        margin: 0.5rem 0 1rem;
+        padding-left: 1.25rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      a.btn {
+        display: inline-block;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.92rem;
+        border: 1px solid var(--border);
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        background: var(--accent-soft);
+      }
+      a.btn:hover {
+        text-decoration: underline;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.75rem;
+        font-size: 0.92rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.6rem 0.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+      }
+      footer {
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.9rem;
+        text-align: center;
+      }
+      footer a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <span class="badge">Open-Source Formula Cheat Sheet</span>
+        <h1>Finance, Math &amp; Civil Engineering Formula Reference</h1>
+        <p class="lead">
+          A quick, verified reference of mathematical, financial, health, and construction estimation formulas with interactive web tools powered by
+          <a href="https://aifreecalculator.com/" target="_blank" rel="noopener">AI Free Calculator</a>.
+        </p>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <h2>
+            <span>1. Systematic Investment Plan (SIP) Future Value</span>
+            <a class="btn" href="https://aifreecalculator.com/finance/sip-calculator/" target="_blank" rel="noopener">Open Interactive SIP Calculator &rarr;</a>
+          </h2>
+          <div class="formula">FV = P &times; [((1 + r)^n - 1) / r] &times; (1 + r)</div>
+          <ul class="vars">
+            <li><strong>P:</strong> Monthly investment amount</li>
+            <li><strong>r:</strong> Periodic monthly rate of return (Annual Rate / 12 / 100)</li>
+            <li><strong>n:</strong> Total number of monthly installments (Years &times; 12)</li>
+          </ul>
+          <p><strong>Example:</strong> Investing 5,000/month for 10 years (n = 120) at 12% p.a. (r = 0.01) yields ~11,61,695.</p>
+        </section>
+
+        <section class="card">
+          <h2>
+            <span>2. Loan Equated Monthly Installment (EMI)</span>
+            <a class="btn" href="https://aifreecalculator.com/finance/emi-calculator/" target="_blank" rel="noopener">Open Interactive EMI Calculator &rarr;</a>
+          </h2>
+          <div class="formula">EMI = [P &times; R &times; (1 + R)^N] / [(1 + R)^N - 1]</div>
+          <ul class="vars">
+            <li><strong>P:</strong> Principal loan amount</li>
+            <li><strong>R:</strong> Monthly interest rate (Annual Rate / 12 / 100)</li>
+            <li><strong>N:</strong> Loan tenure in months</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>
+            <span>3. Concrete Volume &amp; Dry Mix Material Estimation</span>
+            <a class="btn" href="https://aifreecalculator.com/construction/concrete-calculator/" target="_blank" rel="noopener">Open Concrete Calculator &rarr;</a>
+          </h2>
+          <div class="formula">Dry Volume = Wet Volume &times; 1.54</div>
+          <p>To account for voids in sand and aggregate, wet concrete volume is multiplied by 1.54 before applying nominal mix ratios:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Grade</th>
+                <th>Mix Ratio (Cement : Sand : Aggregate)</th>
+                <th>Typical Application</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>M15</td><td>1 : 2 : 4</td><td>Plain Cement Concrete (PCC)</td></tr>
+              <tr><td>M20</td><td>1 : 1.5 : 3</td><td>Residential Slabs, Beams &amp; Footings</td></tr>
+              <tr><td>M25</td><td>1 : 1 : 2</td><td>Heavy Structural Columns &amp; Beams</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2>
+            <span>4. Reinforcement Steel Unit Weight (IS 1786)</span>
+            <a class="btn" href="https://aifreecalculator.com/construction/rcc-beam-steel-calculator/" target="_blank" rel="noopener">Open RCC Beam Steel Calculator &rarr;</a>
+          </h2>
+          <div class="formula">Unit Weight (kg/m) = D&sup2; / 162.2</div>
+          <ul class="vars">
+            <li><strong>D:</strong> Diameter of steel rebar in millimeters (mm)</li>
+            <li><strong>Example:</strong> For a 12 mm bar: (12 &times; 12) / 162.2 = 0.888 kg/m</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>
+            <span>5. Percentage &amp; Percentage Change</span>
+            <a class="btn" href="https://aifreecalculator.com/math/percentage-calculator/" target="_blank" rel="noopener">Open Percentage Calculator &rarr;</a>
+          </h2>
+          <div class="formula">Percentage (%) = (Part / Whole) &times; 100</div>
+          <div class="formula">Percentage Change = ((New Value - Old Value) / Old Value) &times; 100</div>
+        </section>
+
+        <section class="card">
+          <h2>
+            <span>6. Body Mass Index (BMI)</span>
+            <a class="btn" href="https://aifreecalculator.com/health/bmi-calculator/" target="_blank" rel="noopener">Open BMI Calculator &rarr;</a>
+          </h2>
+          <div class="formula">BMI = Weight (kg) / [Height (m)]&sup2;</div>
+          <ul class="vars">
+            <li><strong>Underweight:</strong> &lt; 18.5</li>
+            <li><strong>Normal:</strong> 18.5 &ndash; 24.9</li>
+            <li><strong>Overweight:</strong> 25.0 &ndash; 29.9</li>
+          </ul>
+        </section>
+      </div>
+
+      <footer>
+        <p>
+          Full interactive suite of 130+ free browser-based calculators available at
+          <a href="https://aifreecalculator.com/" target="_blank" rel="noopener">https://aifreecalculator.com/</a>
+          &bull;
+          <a href="https://aifreecalculator.com/math/roman-numeral-converter/" target="_blank" rel="noopener">Roman Numeral Converter</a>
+          &bull;
+          <a href="https://aifreecalculator.com/all-calculators/" target="_blank" rel="noopener">All Calculators</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
